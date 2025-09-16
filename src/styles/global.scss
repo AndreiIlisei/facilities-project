@@ -1,0 +1,25 @@
+/* src/styles/globals.scss */
+
+/* Simple reset */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, sans-serif;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+/* Simple variables (extend later) */
+:root {
+    --primary-color: #ff6600;
+    /* Trackman orange */
+    --gray-100: #f5f5f5;
+    --gray-300: #e0e0e0;
+    --gray-500: #999;
+    --success-color: #2ecc71;
+    --danger-color: #e74c3c;
+}
