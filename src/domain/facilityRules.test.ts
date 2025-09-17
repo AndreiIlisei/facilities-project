@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest'
-import { isOpenNow } from './facility.rules'
+import { isOpenNow } from './facilityRules'
 
 describe('isOpenNow', () => {
   it('returns true within normal range', () => {

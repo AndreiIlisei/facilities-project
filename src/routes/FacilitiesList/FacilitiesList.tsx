@@ -1,5 +1,9 @@
 import { Link } from 'react-router-dom'
 import { useFacilities } from '../../state/FacilitiesContext'
+import Button from '../../components/ui/Button/Button'
+import Input from '../../components/ui/Input/Input'
+import Badge from '../../components/ui/Badge/Badge'
+import Textarea from '../../components/ui/Textarea/Textarea'
 
 export default function FacilitiesList() {
   const { facilities } = useFacilities()
@@ -11,6 +15,18 @@ export default function FacilitiesList() {
       <div style={{ margin: '12px 0' }}>
         <Link to="/facilities/new">+ Create facility</Link>
       </div>
+
+      <div style={{ float: 'right' }}>
+        <Button variant="secondary" size="sm">
+          Create facility
+        </Button>
+      </div>
+
+      <Input label="Name" />
+
+      <Badge variant="success">Success</Badge>
+
+      <Textarea label="Description" />
 
       {facilities.length === 0 ? (
         <p>No facilities yet.</p>

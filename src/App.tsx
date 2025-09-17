@@ -1,11 +1,22 @@
 import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom'
-import FacilitiesList from './routes/FacilitiesList'
-import FacilityForm from './routes/FacilityForm'
+import FacilitiesList from './routes/FacilitiesList/FacilitiesList'
+import FacilityForm from './routes/FacilityForm/FacilitiesForm'
+import Button from './components/ui/Button/Button'
+import Input from './components/ui/Input/Input'
+import Badge from './components/ui/Badge/Badge'
+import Textarea from './components/ui/Textarea/Textarea'
 
 export default function App() {
   return (
     <BrowserRouter>
-      <nav style={{ padding: 12, borderBottom: '1px solid #eee' }}>
+      <nav
+        style={{
+          padding: 12,
+          borderBottom: '1px solid #eee',
+          display: 'flex',
+          justifyContent: 'space-between',
+        }}
+      >
         <Link to="/facilities">Facilities</Link>
       </nav>
       <Routes>
