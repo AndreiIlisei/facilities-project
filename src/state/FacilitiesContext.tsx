@@ -1,9 +1,9 @@
 /* eslint-disable react-refresh/only-export-components */
 import { createContext, useContext, useEffect, useMemo, useReducer } from 'react'
 import type { ReactNode } from 'react'
-import type { Facility } from '../domain/facility.types'
-import { applyDefaultRules, getNextDefault } from '../domain/facility.rules'
-import { loadFacilities, saveFacilities } from '../domain/facility.persistence'
+import type { Facility } from '../domain/facilityTypes'
+import { applyDefaultRules, getNextDefault } from '../domain/facilityRules'
+import { loadFacilities, saveFacilities } from '../domain/facilityPersistence'
 
 type State = { facilities: Facility[] }
 

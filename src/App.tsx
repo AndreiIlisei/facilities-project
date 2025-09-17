@@ -1,6 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom'
-import FacilitiesList from './routes/FacilitiesList'
-import FacilityForm from './routes/FacilityForm'
+import FacilitiesList from './routes/FacilitiesList/FacilitiesList'
+import FacilityForm from './routes/FacilityForm/FacilitiesForm'
 
 export default function App() {
   return (

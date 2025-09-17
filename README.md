@@ -1,5 +1,13 @@
 # React + TypeScript + Vite
 
+We are following the following naming conventions:
+• Folders: lower-case
+components/ui/button, routes/facility-form
+• Components: PascalCase.tsx , Button.tsx, FacilityList.tsx
+• Domain/Utils: camelCase.ts , facilityRules.ts, facilityTypes.ts
+• Context: PascalCaseContext.tsx , FacilitiesContext.tsx
+• SCSS modules: Component.module.scss
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:

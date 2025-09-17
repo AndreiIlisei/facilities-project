@@ -1,4 +1,4 @@
-import type { Facility } from './facility.types'
+import type { Facility } from './facilityTypes'
 
 const STORAGE_KEY = 'tm_facilities_v1'
 

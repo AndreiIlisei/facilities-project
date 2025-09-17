@@ -1,4 +1,4 @@
-import type { Facility } from './facility.types'
+import type { Facility } from './facilityTypes'
 
 //  Returns true if current time is between opening and closing.
 //  Handles overnight ranges (e.g., 21:00 - 06:00).
