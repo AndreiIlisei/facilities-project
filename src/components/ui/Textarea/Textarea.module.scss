@@ -27,8 +27,7 @@
       box-shadow 120ms ease;
 
     &:focus {
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(255, 102, 0, 0.15);
+      border-color: var(--gray-trackman);
     }
   }
 
@@ -39,12 +38,12 @@
 
   &__error {
     font-size: 12px;
-    color: var(--danger-color);
+    color: var(--error-color);
   }
 
   &--error {
     .textarea__control {
-      border-color: var(--danger-color);
+      border-color: var(--error-color);
       box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.15);
     }
   }
