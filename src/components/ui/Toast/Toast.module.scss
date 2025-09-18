@@ -1,0 +1,35 @@
+.viewport {
+  position: fixed;
+  top: 16px;
+  right: 16px;
+  display: grid;
+  gap: 8px;
+  z-index: 1100;
+  pointer-events: none;
+}
+
+.toast {
+  pointer-events: auto;
+  min-width: 220px;
+  max-width: 360px;
+  background: #fff;
+  border: 1px solid #eaeaea;
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+
+  &--info {
+    border-color: #e5e7eb;
+  }
+
+  &--success {
+    border-color: #cdebd7;
+    background: #f3fbf6;
+  }
+
+  &--error {
+    border-color: #f5c2c7;
+    background: #fff5f6;
+  }
+}
