@@ -2,20 +2,29 @@ import { useEffect, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import clsx from 'clsx'
 import styles from './Modal.module.scss'
+import Button from '../Button/Button'
 
 type Props = {
   isOpen: boolean
   title?: string
   onClose: () => void
   children: React.ReactNode
+  footer?: React.ReactNode
   size?: 'sm' | 'md'
   className?: string
 }
 
-export default function Modal({ isOpen, title, onClose, children, size = 'sm', className }: Props) {
+export default function Modal({
+  isOpen,
+  title,
+  onClose,
+  children,
+  footer,
+  size = 'sm',
+  className,
+}: Props) {
   const panelRef = useRef<HTMLDivElement>(null)
 
-  // Close on ESC
   useEffect(() => {
     if (!isOpen) return
     const onKey = (e: KeyboardEvent) => {
@@ -25,7 +34,6 @@ export default function Modal({ isOpen, title, onClose, children, size = 'sm', c
     return () => window.removeEventListener('keydown', onKey)
   }, [isOpen, onClose])
 
-  // Prevent body scroll when open
   useEffect(() => {
     if (!isOpen) return
     const prev = document.body.style.overflow
@@ -35,7 +43,6 @@ export default function Modal({ isOpen, title, onClose, children, size = 'sm', c
     }
   }, [isOpen])
 
-  // Focus the panel when opened (simple focus mgmt)
   useEffect(() => {
     if (isOpen) panelRef.current?.focus()
   }, [isOpen])
@@ -52,13 +59,18 @@ export default function Modal({ isOpen, title, onClose, children, size = 'sm', c
         aria-modal="true"
         aria-label={title}
         tabIndex={-1}
-        onClick={(e) => e.stopPropagation()} // prevent backdrop close when clicking inside
+        onClick={(e) => e.stopPropagation()}
       >
-        {title && <div className={styles['modal__header']}>{title}</div>}
+        {title && (
+          <div className={styles['modal__header']}>
+            {title}
+            <Button onClick={onClose} variant="secondary" padding="sm">
+              X
+            </Button>
+          </div>
+        )}
         <div className={styles['modal__body']}>{children}</div>
-        <div className={styles['modal__footer']}>
-          {/* Consumers can pass actions inside children; footer kept for layout consistency */}
-        </div>
+        {footer && <div className={styles['modal__footer']}>{footer}</div>}
       </div>
     </div>,
     document.body,
