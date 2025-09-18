@@ -1,44 +1,40 @@
 import { Link } from 'react-router-dom'
 import { useFacilities } from '../../state/FacilitiesContext'
 import Button from '../../components/ui/Button/Button'
-import Input from '../../components/ui/Input/Input'
-import Badge from '../../components/ui/Badge/Badge'
-import Textarea from '../../components/ui/Textarea/Textarea'
+import styles from './FacilitiesList.module.scss'
+import FacilityCard from '../../components/facility/FacilityCard/FacilityCard'
 
 export default function FacilitiesList() {
   const { facilities } = useFacilities()
 
+  const sorted = [...facilities].sort((a, b) => {
+    if (a.isDefault && !b.isDefault) return -1
+    if (!a.isDefault && b.isDefault) return 1
+    return a.name.localeCompare(b.name)
+  })
+
   return (
-    <div style={{ padding: 24 }}>
-      <h1>Facilities</h1>
-
-      <div style={{ margin: '12px 0' }}>
-        <Link to="/facilities/new">+ Create facility</Link>
+    <div className={styles.page}>
+      <div className={styles['page__header']}>
+        <h1 className={styles['page__title']}>Facilities</h1>
+        <Link to="/facilities/new">
+          <Button>+ Create facility</Button>
+        </Link>
       </div>
 
-      <div style={{ float: 'right' }}>
-        <Button variant="secondary" size="sm">
-          Create facility
-        </Button>
-      </div>
-
-      <Input label="Name" />
-
-      <Badge variant="success">Success</Badge>
-
-      <Textarea label="Description" />
-
-      {facilities.length === 0 ? (
-        <p>No facilities yet.</p>
+      {sorted.length === 0 ? (
+        <div className={styles['page__empty']}>
+          <p>No facilities yet.</p>
+          <Link to="/facilities/new">
+            <Button variant="secondary">Create your first facility</Button>
+          </Link>
+        </div>
       ) : (
-        <ul>
-          {facilities.map((f) => (
-            <li key={f.id} style={{ marginBottom: 8 }}>
-              <strong>{f.name}</strong> — {f.address} {f.isDefault && <em>(default)</em>} &nbsp;
-              <Link to={`/facilities/${f.id}/edit`}>Edit</Link>
-            </li>
+        <div className={styles['page__grid']}>
+          {sorted.map((f) => (
+            <FacilityCard key={f.id} facility={f} />
           ))}
-        </ul>
+        </div>
       )}
     </div>
   )

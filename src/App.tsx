@@ -1,10 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate, Link } from 'react-router-dom'
 import FacilitiesList from './routes/FacilitiesList/FacilitiesList'
-import FacilityForm from './routes/FacilityForm/FacilitiesForm'
-import Button from './components/ui/Button/Button'
-import Input from './components/ui/Input/Input'
-import Badge from './components/ui/Badge/Badge'
-import Textarea from './components/ui/Textarea/Textarea'
+import FacilityForm from './routes/FacilityForm/FacilityForm'
 
 export default function App() {
   return (
