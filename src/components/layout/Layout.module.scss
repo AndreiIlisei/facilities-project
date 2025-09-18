@@ -26,12 +26,15 @@ $desktop: 1200px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 12px;
   padding: 12px 16px;
 }
 
-.logo img {
+.logo {
   height: 16px;
+
+  img {
+    height: 16px;
+  }
 }
 
 .nav {
@@ -64,9 +67,7 @@ $desktop: 1200px;
 .link {
   color: var(--gray-trackman);
   text-decoration: none;
-  padding: 12px 16px;
-  border-radius: 4px;
-  transition: all 120ms ease;
+  padding: 12px 0px;
   display: block;
 
   &--active {
@@ -87,13 +88,10 @@ $desktop: 1200px;
     justify-content: flex-start;
   }
 
-  .logo img {
-    height: 16px;
-  }
-
   .nav {
     display: flex;
     gap: 8px;
+    margin-left: 32px;
 
     &--mobile {
       display: none;
@@ -106,7 +104,6 @@ $desktop: 1200px;
 
   .link {
     padding: 6px 8px;
-    border-radius: 8px;
     display: inline-block;
     white-space: nowrap;
   }
@@ -116,10 +113,17 @@ $desktop: 1200px;
 @media (min-width: $desktop) {
   .header__container {
     max-width: 1200px;
-    padding: 12px 16px;
+    padding: 19px 16px;
+  }
+
+  .nav {
+    margin-left: 32px;
+    gap: 8px;
   }
 
   .link {
+    transition: all 120ms ease;
+
     &:hover {
       color: var(--white-trackman);
     }

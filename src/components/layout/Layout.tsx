@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { NavLink } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import styles from './Layout.module.scss'
 import { FaBars, FaTimes } from 'react-icons/fa'
 
@@ -23,7 +23,9 @@ export default function Layout({ children }: { children: React.ReactNode }) {
     <div className={styles.layout}>
       <header className={styles.header}>
         <div className={styles.header__container}>
-          <img src="/images/trackman.svg" alt="Trackman" />
+          <Link to="/facilities" className={styles.logo}>
+            <img src="/images/trackman-logo.svg" alt="Trackman" />
+          </Link>
 
           {/* Desktop Navigation */}
           <nav className={styles.nav}>
