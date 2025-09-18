@@ -1,12 +1,11 @@
 .badge {
   display: inline-flex;
   align-items: center;
-  line-height: 1;
+  line-height: 1.4;
   font-weight: 600;
-  font-size: 12px;
-  padding: 4px 8px;
+  font-size: 14px;
+  padding: 2px 12px;
   border-radius: 999px;
-  border: 1px solid transparent;
 
   &--neutral {
     background: #f2f2f2;
@@ -15,14 +14,14 @@
   }
 
   &--success {
-    background: #e9f7ef;
-    color: #1e7e34;
+    background: #ebffee;
+    color: #14ae5c;
     border-color: #cdebd7;
   }
 
   &--danger {
-    background: #fdecea;
-    color: #a71d2a;
+    background: #fee9e7;
+    color: #ec221f;
     border-color: #f5c2c7;
   }
 }
