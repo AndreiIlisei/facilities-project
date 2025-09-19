@@ -1,4 +1,3 @@
- 
 import { useEffect, useMemo, useReducer } from 'react'
 import type { ReactNode } from 'react'
 import type { Facility } from '../../domain/facilityTypes'
