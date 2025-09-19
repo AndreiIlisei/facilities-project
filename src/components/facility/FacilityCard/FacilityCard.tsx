@@ -4,11 +4,11 @@ import { isOpenNow } from '../../../domain/facilityRules'
 import type { Facility } from '../../../domain/facilityTypes'
 import Badge from '../../ui/Badge/Badge'
 import Button from '../../ui/Button/Button'
-import { useFacilities } from '../../../state/FacilitiesContext'
 import Modal from '../../ui/Modal/Modal'
 import { useState } from 'react'
 import { CiLocationOn } from 'react-icons/ci'
 import { FALLBACK_IMAGE } from '../../../utils/variables'
+import { useFacilities } from '../../../state/facilities/useFacilities'
 
 type Props = {
   facility: Facility

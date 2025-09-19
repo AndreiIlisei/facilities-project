@@ -1,10 +1,10 @@
 import { Link } from 'react-router-dom'
-import { useFacilities } from '../../state/FacilitiesContext'
 import Button from '../../components/ui/Button/Button'
 import styles from './FacilitiesList.module.scss'
 import FacilityCard from '../../components/facility/FacilityCard/FacilityCard'
 import { mockFacilities } from '../../domain/mockfacilities'
 import { useToast } from '../../components/ui/Toast/useToast'
+import { useFacilities } from '../../state/facilities/useFacilities'
 
 export default function FacilitiesList() {
   const { facilities, create } = useFacilities()
