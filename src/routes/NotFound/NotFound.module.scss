@@ -1,0 +1,31 @@
+.notFound {
+  padding: 40px 24px;
+  display: grid;
+  place-items: center;
+
+  &__card {
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 24px;
+    max-width: 560px;
+    width: 100%;
+    text-align: center;
+  }
+
+  &__title {
+    font-size: 24px;
+    font-weight: 800;
+    margin-bottom: 8px;
+  }
+
+  &__text {
+    color: #555;
+    margin-bottom: 16px;
+  }
+
+  &__actions {
+    display: flex;
+    justify-content: center;
+  }
+}
