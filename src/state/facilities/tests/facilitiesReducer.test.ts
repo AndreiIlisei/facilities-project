@@ -1,3 +1,4 @@
+ 
 import { describe, it, expect } from 'vitest'
 import type { Facility } from '../../../domain/facilityTypes'
 import { applyDefaultRules, getNextDefault } from '../../../domain/facilityRules'
@@ -32,11 +33,10 @@ describe('default facility rules', () => {
   })
 
   it('deleting default picks next default deterministically', () => {
-    const a = make('a', { isDefault: true, createdAt: 1 })
     const b = make('b', { createdAt: 2 })
     const c = make('c', { createdAt: 3 })
-    const next = getNextDefault([b, c]) // a deleted
-    expect(next?.id).toBe('b') // earliest createdAt wins
+    const next = getNextDefault([b, c])
+    expect(next?.id).toBe('b')
   })
 
   it('no facilities → none default', () => {
