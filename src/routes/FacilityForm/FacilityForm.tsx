@@ -1,13 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import styles from './FacilityForm.module.scss'
-import { useFacilities } from '../../state/FacilitiesContext'
 import type { Facility } from '../../domain/facilityTypes'
 import Input from '../../components/ui/Input/Input'
 import Textarea from '../../components/ui/Textarea/Textarea'
 import Button from '../../components/ui/Button/Button'
 import { useToast } from '../../components/ui/Toast/useToast'
 import { isValidImageUrl, isValidTime } from '../../utils/helperFunctions'
+import { useFacilities } from '../../state/facilities/useFacilities'
 
 type Props = { mode: 'create' | 'edit' }
 

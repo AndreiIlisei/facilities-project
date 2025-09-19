@@ -1,45 +1,37 @@
-/* eslint-disable react-refresh/only-export-components */
-import { createContext, useContext, useEffect, useMemo, useReducer } from 'react'
+import { useEffect, useMemo, useReducer } from 'react'
 import type { ReactNode } from 'react'
-import type { Facility } from '../domain/facilityTypes'
-import { applyDefaultRules, getNextDefault } from '../domain/facilityRules'
-import { loadFacilities, saveFacilities } from '../domain/facilityPersistence'
+import type { Facility } from '../../domain/facilityTypes'
+import { applyDefaultRules, getNextDefault } from '../../domain/facilityRules'
+import { loadFacilities, saveFacilities } from '../../domain/facilityPersistence'
+import {
+  FacilitiesContext,
+  type CreatePayload,
+  type FacilitiesApi,
+  type UpdatePayload,
+} from './context'
 
 type State = { facilities: Facility[] }
-
-type CreatePayload = Omit<Facility, 'id' | 'createdAt' | 'updatedAt'>
-type UpdatePayload = { id: string; patch: Partial<Omit<Facility, 'id' | 'createdAt'>> }
-
 type Action =
-  | { type: 'INIT'; payload: Facility[] }
-  | { type: 'CREATE'; payload: Facility }
+  | { type: 'CREATE'; payload: CreatePayload }
   | { type: 'UPDATE'; payload: UpdatePayload }
   | { type: 'DELETE'; payload: { id: string } }
   | { type: 'SET_DEFAULT'; payload: { id: string } }
 
-type Ctx = {
-  facilities: Facility[]
-  create: (f: Facility) => void
-  update: (id: string, patch: UpdatePayload['patch']) => void
-  remove: (id: string) => void
-  setDefault: (id: string) => void
-}
-
-const FacilitiesContext = createContext<Ctx | null>(null)
-
 function reducer(state: State, action: Action): State {
   switch (action.type) {
-    case 'INIT': {
-      return { facilities: action.payload }
-    }
     case 'CREATE': {
-      const list = [...state.facilities, action.payload]
-      // If this is the first facility, enforce default
+      const newItem: Facility = {
+        ...action.payload,
+        id: (crypto?.randomUUID && crypto.randomUUID()) || Math.random().toString(36).slice(2),
+        createdAt: Date.now(),
+        updatedAt: Date.now(),
+      }
+      const list = [...state.facilities, newItem]
       const result =
         state.facilities.length === 0
-          ? applyDefaultRules(list, action.payload.id)
+          ? applyDefaultRules(list, newItem.id)
           : action.payload.isDefault
-            ? applyDefaultRules(list, action.payload.id)
+            ? applyDefaultRules(list, newItem.id)
             : list
       return { facilities: result }
     }
@@ -59,9 +51,7 @@ function reducer(state: State, action: Action): State {
       if (wasDefault) {
         const next = getNextDefault(remaining)
         if (next) {
-          return {
-            facilities: remaining.map((f) => ({ ...f, isDefault: f.id === next.id })),
-          }
+          return { facilities: remaining.map((f) => ({ ...f, isDefault: f.id === next.id })) }
         }
       }
       return { facilities: remaining }
@@ -75,20 +65,16 @@ function reducer(state: State, action: Action): State {
 }
 
 export function FacilitiesProvider({ children }: { children: ReactNode }) {
-  const [state, dispatch] = useReducer(reducer, { facilities: [] })
+  // lazy init → reads once from storage (prevents first-render wipe)
+  const [state, dispatch] = useReducer(reducer, undefined as unknown as State, () => ({
+    facilities: loadFacilities(),
+  }))
 
-  // hydrate from storage once
-  useEffect(() => {
-    const data = loadFacilities()
-    dispatch({ type: 'INIT', payload: data })
-  }, [])
-
-  // persist on changes
   useEffect(() => {
     saveFacilities(state.facilities)
   }, [state.facilities])
 
-  const api: Ctx = useMemo(
+  const api: FacilitiesApi = useMemo(
     () => ({
       facilities: state.facilities,
       create: (f) => dispatch({ type: 'CREATE', payload: f }),
@@ -100,10 +86,4 @@ export function FacilitiesProvider({ children }: { children: ReactNode }) {
   )
 
   return <FacilitiesContext.Provider value={api}>{children}</FacilitiesContext.Provider>
-}
-
-export function useFacilities() {
-  const ctx = useContext(FacilitiesContext)
-  if (!ctx) throw new Error('useFacilities must be used within FacilitiesProvider')
-  return ctx
 }

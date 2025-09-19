@@ -1,6 +1,5 @@
 import type { Facility } from './facilityTypes'
-
-const STORAGE_KEY = 'tm_facilities_v1'
+import { STORAGE_KEY } from '../utils/variables'
 
 export function loadFacilities(): Facility[] {
   try {
@@ -19,4 +18,8 @@ export function saveFacilities(facilities: Facility[]) {
   } catch {
     /* empty */
   }
+}
+
+export function clearFacilities() {
+  localStorage.removeItem(STORAGE_KEY)
 }
