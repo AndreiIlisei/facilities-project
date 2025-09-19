@@ -1,77 +1,47 @@
-# React + TypeScript + Vite
+# Trackman Facilities – Frontend Challenge
 
-We are following the following naming conventions:
-• Folders: lower-case
-components/ui/button, routes/facility-form
-• Components: PascalCase.tsx , Button.tsx, FacilityList.tsx
-• Domain/Utils: camelCase.ts , facilityRules.ts, facilityTypes.ts
-• Context: PascalCaseContext.tsx , FacilitiesContext.tsx
-• SCSS modules: Component.module.scss
+A small React + TypeScript app for managing a list of golf facilities (create, edit, delete, set default).  
+Built as part of the Trackman frontend developer interview process.
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+---
 
-Currently, two official plugins are available:
+## 🚀 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **Facilities List** – view all facilities in a responsive grid
+- **Create / Edit / Delete** – manage facilities with validation and toasts
+- **Default Facility Rules**
+  - First facility is automatically default
+  - Switching default overrides previous
+  - Deleting default reassigns another automatically
+- **Persistent Storage** – data stored in `localStorage`
+- **Responsive UI** – SCSS Modules + BEM naming, accessible modal, sticky navbar
+- **Fallback Image** – gracefully handles missing or broken image URLs
+- **Developer Experience**
+  - ESLint + Prettier + Husky pre-commit hooks
+  - Conventional Commits enforced
+  - Vite
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+## 🛠 Tech Stack
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+- **React + Vite + TypeScript**
+- **SCSS Modules** (with BEM-style naming)
+- **clsx** for conditional class handling
+- **Vitest** for testing
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+---
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+## 📦 Getting Started
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+Clone the repo and install dependencies:
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+npm install
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+npm run dev
+
+npm run tests
+
+npm run build
+
+npm run preview
