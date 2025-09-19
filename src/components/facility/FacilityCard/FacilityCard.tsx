@@ -8,6 +8,7 @@ import { useFacilities } from '../../../state/FacilitiesContext'
 import Modal from '../../ui/Modal/Modal'
 import { useState } from 'react'
 import { CiLocationOn } from 'react-icons/ci'
+import { FALLBACK_IMAGE } from '../../../utils/variables'
 
 type Props = {
   facility: Facility
@@ -43,10 +44,18 @@ export default function FacilityCard({ facility }: Props) {
               <img src="public/images/default-star.svg" alt="Default" />
             </div>
           )}
+
           <img
+            loading="lazy"
             className={styles['card__image']}
-            src={facility.imageUrl || 'https://via.placeholder.com/640x360?text=Facility'}
+            src={facility.imageUrl}
             alt={`${facility.name} image`}
+            onError={(e) => {
+              const target = e.target as HTMLImageElement
+              if (target.src !== FALLBACK_IMAGE) {
+                target.src = FALLBACK_IMAGE
+              }
+            }}
           />
         </div>
         <div className={styles['card__header']}>
