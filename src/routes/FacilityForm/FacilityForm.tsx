@@ -7,6 +7,7 @@ import Input from '../../components/ui/Input/Input'
 import Textarea from '../../components/ui/Textarea/Textarea'
 import Button from '../../components/ui/Button/Button'
 import { useToast } from '../../components/ui/Toast/useToast'
+import { isValidImageUrl, isValidTime } from '../../utils/helperFunctions'
 
 type Props = { mode: 'create' | 'edit' }
 
@@ -30,25 +31,6 @@ const EMPTY: FormState = {
   openingTime: '',
   closingTime: '',
   isDefault: false,
-}
-
-// ---- helpers ----
-function isValidTime(hhmm: string) {
-  const m = /^(\d{2}):(\d{2})$/.exec(hhmm)
-  if (!m) return false
-  const h = Number(m[1])
-  const min = Number(m[2])
-  return h >= 0 && h <= 23 && min >= 0 && min <= 59
-}
-
-function isLikelyUrl(u: string) {
-  if (!u) return true // optional field
-  try {
-    const url = new URL(u)
-    return url.protocol === 'http:' || url.protocol === 'https:'
-  } catch {
-    return false
-  }
 }
 
 export default function FacilityForm({ mode }: Props) {
@@ -116,7 +98,7 @@ export default function FacilityForm({ mode }: Props) {
       e.openingTime = e.openingTime || 'Opening and closing cannot be equal'
       e.closingTime = e.closingTime || 'Opening and closing cannot be equal'
     }
-    if (!isLikelyUrl(s.imageUrl)) e.imageUrl = 'Provide a valid http(s) URL'
+    if (!isValidImageUrl(s.imageUrl)) e.imageUrl = 'Provide a valid http(s) URL'
     return e
   }
 
