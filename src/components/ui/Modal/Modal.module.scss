@@ -8,7 +8,7 @@
   &__backdrop {
     position: absolute;
     inset: 0;
-    background: rgba(0, 0, 0, 0.35);
+    background-color: #00000080;
   }
 
   &__panel {
@@ -18,7 +18,7 @@
     box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
     width: 100%;
     max-width: 520px;
-    outline: none; /* focus ring handled by shadow/border */
+    outline: none;
     border: 1px solid #eee;
     display: flex;
     flex-direction: column;
@@ -27,24 +27,31 @@
     &--sm {
       max-width: 420px;
     }
+
     &--md {
       max-width: 720px;
     }
   }
 
   &__header {
-    padding: 16px 20px;
+    font-family: 'Nunito';
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 12px;
     font-weight: 700;
     font-size: 16px;
     border-bottom: 1px solid #f0f0f0;
   }
 
   &__body {
-    padding: 16px 20px;
+    font-family: 'Nunito';
+    padding: 12px;
   }
 
   &__footer {
-    padding: 12px 20px;
+    font-family: 'Nunito';
+    padding: 12px;
     display: flex;
     gap: 8px;
     justify-content: flex-end;
