@@ -9,6 +9,8 @@ import { useState } from 'react'
 import { CiLocationOn } from 'react-icons/ci'
 import { FALLBACK_IMAGE } from '../../../utils/variables'
 import { useFacilities } from '../../../state/facilities/useFacilities'
+import deleteIcon from '../../../assets/icons/delete-icon.svg'
+import defaultStar from '../../../assets/icons/default-star.svg'
 
 type Props = {
   facility: Facility
@@ -41,7 +43,7 @@ export default function FacilityCard({ facility }: Props) {
         <div className={styles['card__imageWrap']}>
           {facility.isDefault && (
             <div className={styles['card__default']}>
-              <img src="public/images/default-star.svg" alt="Default" />
+              <img src={defaultStar} alt="Default" />
             </div>
           )}
 
@@ -76,7 +78,7 @@ export default function FacilityCard({ facility }: Props) {
               size="sm"
               onClick={() => setConfirmOpen(true)}
             >
-              <img src="public/images/delete-icon.svg" alt="Delete" />
+              <img src={deleteIcon} alt="Delete" />
             </Button>
 
             <Link to={`/facilities/${facility.id}/edit`}>
